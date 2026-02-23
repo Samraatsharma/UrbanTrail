@@ -4,16 +4,11 @@
    Map · Routing · Autocomplete · Navigation · GPS · Voice · i18n
    ================================================================ */
 
-/* ──────────────────────────────────────────────────────────────
-   ███████  API KEY  ███████
-   STEP 1: Get your FREE key → https://openrouteservice.org/dev/#/signup
-   STEP 2: Paste it below replacing PASTE_YOUR_API_KEY_HERE
-   ────────────────────────────────────────────────────────────── */
 const ORS_API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjE4NWY2YTVkMWZlYzQxOTk4Mjk0ZTcwOThiYjdiMjgwIiwiaCI6Im11cm11cjY0In0=";
-/* ──────────────────────────────────────────────────────────────
-   ^^^  PASTE YOUR KEY ABOVE  ^^^
-   ────────────────────────────────────────────────────────────── */
 
+/* ═══════════════════════════════════════════════════════════════
+   TRANSLATIONS (English / Hindi)
+═══════════════════════════════════════════════════════════════ */
 /* ═══════════════════════════════════════════════════════════════
    TRANSLATIONS (English / Hindi)
 ═══════════════════════════════════════════════════════════════ */

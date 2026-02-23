@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "urbantrail-smart-navigator",
+  "cleanUrls": true,
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

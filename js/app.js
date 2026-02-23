@@ -517,6 +517,9 @@ function processRoutes(features) {
     // Auto-select the fastest route
     const autoSelect = fastest || shortest || routes[0];
     if (autoSelect) selectRoute(autoSelect.idx);
+
+    // Automatically open panel to show route options (especially important for mobile drawer)
+    openPanel();
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1055,7 +1058,7 @@ function clearAll() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PANEL TOGGLE (Mobile)
+   PANEL CONTROLS (Mobile Drawer / Desktop Hiding)
 ═══════════════════════════════════════════════════════════════ */
 function togglePanel() {
     const panel = document.getElementById("right-panel");
@@ -1063,6 +1066,15 @@ function togglePanel() {
         panel.classList.toggle("mobile-open");
     } else {
         panel.classList.toggle("hidden");
+    }
+}
+
+function openPanel() {
+    const panel = document.getElementById("right-panel");
+    if (window.innerWidth <= 768) {
+        panel.classList.add("mobile-open");
+    } else {
+        panel.classList.remove("hidden");
     }
 }
 

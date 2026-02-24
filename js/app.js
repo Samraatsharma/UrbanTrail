@@ -52,6 +52,8 @@ const T = {
         turn_arrive: "You have arrived",
         source_placeholder: "Search source location…",
         dest_placeholder: "Search destination…",
+        mode_car: "Car",
+        mode_bike: "Bike",
     },
     hi: {
         panel_title: "अपना रास्ता खोजें",
@@ -92,6 +94,8 @@ const T = {
         turn_arrive: "आप पहुंच गए",
         source_placeholder: "शुरुआती जगह खोजें…",
         dest_placeholder: "मंजिल खोजें…",
+        mode_car: "कार",
+        mode_bike: "बाइक",
     }
 };
 
@@ -126,6 +130,7 @@ const state = {
     lastCarBearing: 0,
     lastCarPos: null,
     isRealGpsNav: false,
+    vehicleType: "driving-car", // "driving-car" or "cycling-regular" (used for profile and calculations)
     // GPS: only update when moved >= this many metres (prevents jitter)
     GPS_MOVE_THRESHOLD: 8,
     // Zoom: fired only ONCE when navigation starts — never again
@@ -198,7 +203,11 @@ function formatDur(seconds) {
 
 function calcFuel(distMeters) {
     const km = distMeters / 1000;
-    const used = km / 15;           // Mileage 15 km/litre
+    // Average Indian efficiencies:
+    // Car: 15 km/l, Bike: 50 km/l
+    const isBike = state.vehicleType === "cycling-regular";
+    const mileage = isBike ? 50 : 15;
+    const used = km / mileage;
     const cost = used * 105;        // ₹105/litre
     return { used: used.toFixed(2), cost: Math.round(cost) };
 }
@@ -436,7 +445,8 @@ async function fetchRoutes() {
     };
 
     try {
-        const res = await fetch("https://api.openrouteservice.org/v2/directions/driving-car/geojson", {
+        const url = `https://api.openrouteservice.org/v2/directions/${state.vehicleType}/geojson`;
+        const res = await fetch(url, {
             method: "POST",
             headers: {
                 "Authorization": ORS_API_KEY,
@@ -1100,6 +1110,20 @@ document.addEventListener("DOMContentLoaded", () => {
         state.destCoords = { lat: place.lat, lng: place.lng };
         placeDestMarker([place.lat, place.lng]);
         state.map.flyTo([place.lat, place.lng], 13, { duration: 1.2 });
+    });
+
+    // Transport Mode Selection
+    document.querySelectorAll(".ts-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".ts-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            state.vehicleType = btn.dataset.mode;
+
+            // If we already have routes, re-calculate or re-fetch
+            if (state.sourceCoords && state.destCoords) {
+                fetchRoutes();
+            }
+        });
     });
 
     // Find Routes

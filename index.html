@@ -142,6 +142,29 @@
         </div>
         <div id="city-badge"></div>
 
+        <!-- Transport Mode Selector -->
+        <div class="transport-selector" id="transport-selector">
+          <button class="ts-btn active" data-mode="driving-car" title="Car">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <rect x="1" y="10" width="22" height="8" rx="2" />
+              <path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4" />
+              <circle cx="6" cy="18" r="2" />
+              <circle cx="18" cy="18" r="2" />
+            </svg>
+            <span data-i18n="mode_car">Car</span>
+          </button>
+          <button class="ts-btn" data-mode="cycling-regular" title="Two Wheeler">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <circle cx="18.5" cy="17.5" r="3.5" />
+              <circle cx="5.5" cy="17.5" r="3.5" />
+              <circle cx="15" cy="5" r="1" />
+              <path d="M15 7a2 2 0 0 1 2 2v2" />
+              <path d="M12 17.5V14l-3-3 4-3 2 3h2" />
+            </svg>
+            <span data-i18n="mode_bike">Bike</span>
+          </button>
+        </div>
+
         <!-- Source -->
         <div class="input-group">
           <label data-i18n="label_from">FROM</label>

@@ -583,6 +583,55 @@ body::before {
     }
 }
 
+/* Transport Selector */
+.transport-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ts-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ts-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.ts-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.ts-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.ts-btn.active {
+    background: var(--grad-main);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.ts-btn.active svg {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
 /* Route connector */
 .route-connector {
     display: flex;
